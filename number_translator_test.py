@@ -16,6 +16,18 @@ class TestTranslator(unittest.TestCase):
 
         _test_translator -> NumberTranslator
             the translator being tested 
+
+
+        Methods
+        -------
+        test_tens()
+            tests the tens numbers (20 to 99, since 1-19 is just a dictionary)
+
+        test_hundreds()
+            tests the hundreds numbers (100, 999)
+
+        test_number_translator()
+            tests the number translator for all numbers in the required data set
     '''
 
 
@@ -25,7 +37,17 @@ class TestTranslator(unittest.TestCase):
         _conversions = dict(zip(range(1,1001),_verbal_equivalents_list))
         _test_translator = NumberTranslator()
         
+    def test_tens(self):
+        for num in range(20,100):
+            self.assertEqual(self._test_translator._translate_tens(num), self._conversions[num])
+    
+    def test_hundreds(self):
+        for num in range(100,1000):
+            self.assertEqual(self._test_translator._translate_hundreds(num),self._conversions[num])
 
+    def test_number_translator(self):
+        for num in self._conversions:
+            self.assertEqual(self._test_translator.translate(num), self._conversions[num])
         
 if __name__ == '__main__':
     unittest.main()
