@@ -1,7 +1,7 @@
 # Welcome to C3PO!
 ---
 ## The Goal
-This is a short program in response to a programming question with the following description:
+This is a short program in response to a code question with the following description:
 > Given an integer between 0-1000, return the verbal equivalent as a String
 >
 
