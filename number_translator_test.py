@@ -9,10 +9,10 @@ class TestTranslator(unittest.TestCase):
         Attributes
         ----------
         _verbal_equivalents_list -> list[list[str]]
-            a list of the verbal equivalents of the numbers 1 through 1000
+            a list of the verbal equivalents of the numbers 0 through 1000
         
         _conversions -> dict[int:str]
-            a dictionary of all the integers from 1 to 1000 as the keys and their verbal equivalents as the values
+            a dictionary of all the integers from 0 to 1000 as the keys and their verbal equivalents as the values
 
         _test_translator -> NumberTranslator
             the translator being tested 
@@ -21,7 +21,7 @@ class TestTranslator(unittest.TestCase):
         Methods
         -------
         test_tens()
-            tests the tens numbers (20 to 99, since 1-19 is just a dictionary)
+            tests the tens numbers (20 to 99, since 0-19 is just a dictionary lookup)
 
         test_hundreds()
             tests the hundreds numbers (100, 999)
@@ -34,9 +34,11 @@ class TestTranslator(unittest.TestCase):
     # open verbal numbers from csv, filter contents, and map given verbal numbers to ints from 1 to 1000
     with open('verbal_equivalents.csv','r') as verbal_equivalents:
         _verbal_equivalents_list = (line[0].replace('\n','') for line in csv.reader(verbal_equivalents))
-        _conversions = dict(zip(range(1,1001),_verbal_equivalents_list))
-        _test_translator = NumberTranslator()
+        _conversions = dict(zip(range(0,1001),_verbal_equivalents_list))
         
+    _test_translator = NumberTranslator()
+        
+
     def test_tens(self):
         for num in range(20,100):
             self.assertEqual(self._test_translator._translate_tens(num), self._conversions[num])
